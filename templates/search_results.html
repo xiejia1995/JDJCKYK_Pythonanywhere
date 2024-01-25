@@ -1,0 +1,39 @@
+<!-- search_results.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search Results</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <h1>Search Results for "{{ search_query }}" ({{ search_type.capitalize() }})</h1>
+
+        {% if search_results %}
+        <p>搜索到了{{ search_results|length }}个结果</p> <!-- Display the total number of search results -->
+
+        <ul>
+            {% for result in search_results %}
+                <li>
+                    <strong>刊物:</strong> {{ result[1] }}<br> <!-- Folder -->
+                    <a href="{{ url_for('image_info', folder=result[1], filename=result[2]) }}">
+                        <strong>文件:</strong> {{ result[2] }}<!-- Filename -->
+                    </a><br>
+                    <strong>日期:</strong> {{ result[3] }}<br><!-- Date -->
+                    <strong>備注:</strong> {{ result[4] }}<br><!-- Notes -->
+                    <strong>關鍵詞:</strong> {{ result[5] }}<br><!-- Keywords -->
+                    <strong>全文:</strong> {{ result[6] }}<br><!-- Fulltext -->
+                    <!-- Add more fields as needed -->
+                </li>
+                <br>
+                <hr> <!-- This is the horizontal line -->
+                <br>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>本次搜索无结果</p>
+        {% endif %}
+    </body>
+</html>

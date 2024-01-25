@@ -1,0 +1,70 @@
+<!-- image_info.html -->
+<!DOCTYPE html>
+<html lang="en">
+    {% include 'header.html' %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Image Information</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+<body>
+    <div id="main-container">
+    <h1>本页预览</h1>
+    <div class="viewimagemetadata-container">
+        <p>Folder: {{ folder }}</p>
+        <p>Filename: {{ filename }}</p>
+
+        <!-- Display metadata -->
+        <div class="metadata-container">
+            <p>Date: {{ image_metadata.date }}</p>
+            <p>Notes: {{ image_metadata.notes }}</p>
+            <p>Keywords: {{ image_metadata.keywords }}</p>
+            <!-- Add more metadata fields as needed -->
+        </div>
+    </div>
+    <!-- Add more information about the image as needed -->
+
+    <!-- Thumbnail of the image linked to view_image -->
+    <div class="viewimage-container">
+    <table class="thumbnail">
+        <tr>       
+            <td>
+                <a href="{{ url_for('view_image', folder=folder, filename=filename) }}">
+                    <img src="{{ url_for('thumbnail', folder=folder, filename=filename) }}" alt="Thumbnail">
+                </a>
+            </td>
+        </tr>
+        <tr>     
+            <td>                                
+                 <div class="fulltext-container">
+                    <p>全文: {{ image_metadata.fulltext }}</p>                   
+               </div>
+            </td>
+        </tr>
+    </table>    
+    </div>  
+    <div class="nextpage-buttons-container">
+        {% if prev_filename %}
+        <div class="nextpage-buttons">
+            <a href="{{ url_for('image_info', folder=folder, filename=prev_filename) }}">上一页</a>
+        </div>
+            {% endif %}
+        {% if next_filename %}
+        <div class="nextpage-buttons">
+            <a href="{{ url_for('image_info', folder=folder, filename=next_filename) }}">下一页</a>
+        </div>
+        {% endif %}
+    </div>
+    <div class="button-container">
+        <a href="{{ url_for('view_image', folder=folder, filename=filename) }}" class="button">下载图像</a>
+        <a href="{{ url_for('add_metadata', folder=folder, filename=filename) }}" class="button">编辑信息</a>
+        <a href="{{ url_for('view_folder', folder=folder) }}" class="button">回到上层</a>
+        <a href="{{ url_for('index') }}" class="button">回到主页</a>
+    </div>
+
+
+
+</div>
+</body>
+</html>

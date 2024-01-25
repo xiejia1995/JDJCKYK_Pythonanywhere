@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Image</title>
+</head>
+<body>
+    <h1>View Image</h1>
+
+    <img src="{{ url_for('view_image', folder=folder, filename=filename) }}" alt="Image" style="max-width: 800px; max-height: 800px;">
+
+    <a href="{{ url_for('view_folder', folder=folder) }}">Back to Folder</a>
+    <a href="{{ url_for('index') }}">Back to Index</a>
+</body>
+</html>

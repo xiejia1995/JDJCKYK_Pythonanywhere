@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'header.html' %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>近代教材开源库</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+
+<body>
+    <!-- <h1>Database</h1>-->
+    <!-- Updated search bar container -->
+    
+    <div id="search-container">
+        <form action="{{ url_for('search_images') }}" method="get">
+            <br>
+            <br>
+            <div id="search-bar-container">                
+                <input type="text" name="search" required>            
+                <button type="submit">搜　索</button>
+                
+            </div> 
+
+            <!-- Add this code inside the form element -->
+            <div id="search-types-container">
+                <div id="search_types">
+                    <input type="radio" id="metadata_search" name="search_type" value="all" checked>
+                    <label for="all">搜索全部</label>
+                    <input type="radio" id="fulltext_search" name="search_type" value="fulltext">
+                    <label for="fulltext">全文</label>    
+                    <input type="radio" id="date_search" name="search_type" value="date">
+                    <label for="date">日期</label>
+                    <input type="radio" id="keywords_search" name="search_type" value="keywords">
+                    <label for="keywords">关键词</label>
+                    <input type="radio" id="filename_search" name="search_type" value="filename">
+                    <label for="filename">文件名</label>
+                </div>
+            </div>
+        </form>
+    <!--下拉菜单选择搜索模式     
+        <label for="search_type">Search By:</label>
+        <select id="search_type" name="search_type">
+            <option value="all">搜索全部</option>            
+            <option value="fulltext">全文</option>
+            <option value="date">日期</option>
+            <option value="keywords">关键词</option>
+            <option value="filename">文件名</option>
+        </select>-->   
+        <br>  
+    </div>   
+    
+    <br>
+    <ul>
+        {% for subfolder in subfolders %}
+            <li><a href="{{ url_for('view_folder', folder=subfolder) }}">{{ subfolder }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

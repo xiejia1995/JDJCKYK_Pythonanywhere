@@ -1,0 +1,28 @@
+<!-- header.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>近代教材开源库</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <!-- Add your logo image here -->
+            <img src="{{ url_for('static', filename='DBlogo.png') }}" alt="Logo">
+        
+            <div class="brand">
+                <h2>近代教材开源库</h2>
+            </div>
+        </div>
+        <div class="navigation">
+            <a href="{{ url_for('index') }}">首页</a>
+            <a href="#">学科浏览</a>
+            <a href="#">学期分段</a>
+            <a href="{{ url_for('about') }}">关于本站</a>
+        </div>
+    </div>
+</body>
+</html>

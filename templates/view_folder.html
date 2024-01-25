@@ -1,0 +1,39 @@
+<!-- view_folder.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Folder - {{ folder }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>View Folder - {{ folder }}</h1>
+
+    <h2>Image Filenames:</h2>
+    <ul>
+       <!-- view_folder.html -->
+        <!-- ... existing content ... -->
+
+        {% macro render_folder_content(folder_content) %}
+        {% for item in folder_content %}
+            {% if item.type == 'folder' %}
+                <div class="folder">
+                    <a href="{{ url_for('view_folder', folder=folder+'/'+item.name) }}">{{ item.name }}</a>
+                    
+                </div>
+            {% else %}
+                <div class="file">
+                    <a href="{{ url_for('image_info', folder=folder, filename=item.name) }}">{{ item.name }}</a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endmacro %}
+    
+    {{ render_folder_content(folder_content) }}
+
+    </ul>
+
+    <a href="{{ url_for('index') }}">Back to Index</a>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!-- add_metadata.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Metadata</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Add Metadata</h1>
+    <form action="{{ url_for('save_metadata', folder=folder, filename=filename) }}" method="post">
+        <label for="date">Date:</label>
+        <input type="text" id="date" name="date" value="{{ existing_metadata.get('date', '') }}" required>
+        <br>
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes" rows="4">{{ existing_metadata.get('notes', '') }}</textarea>
+        <br>
+        <label for="keywords">Keywords:</label>
+        <input type="text" id="keywords" name="keywords" value="{{ existing_metadata.get('keywords', '') }}">
+        <br>
+        <label for="fulltext">Fulltext:</label>
+        <textarea id="fulltext" name="fulltext">{{ existing_metadata.get('fulltext', '') }}</textarea>
+        <br>
+        <button type="submit">Save Metadata</button>
+    </form>
+    <br>
+    <a href="{{ url_for('image_info', folder=folder, filename=filename) }}">Back to Image Info</a>
+</body>
+</html>
